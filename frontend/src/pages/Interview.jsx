@@ -93,7 +93,8 @@ export default function Interview() {
             if (useBackend) {
                 addMCPLog('interview_controller → starting session...', 'pending');
                 try {
-                    const res = await axios.post(`/api/start/${sessionId}`);
+                    const API = "https://muthaiah26-hire-agent.hf.space";
+                    const res = await axios.post(`${API}/api/start/${sessionId}`);
                     if (res.data.success && res.data.question) {
                         const q = res.data.question;
                         currentQuestionRef.current = q;
@@ -168,7 +169,8 @@ export default function Interview() {
 
         if (useBackend) {
             try {
-                const res = await axios.post('/api/submit-answer', {
+                const API = "https://muthaiah26-hire-agent.hf.space";
+                const res = await axios.post(`${API}/api/submit-answer`, {
                     session_id: sessionId,
                     answer_text: answer,
                 });
@@ -270,7 +272,8 @@ export default function Interview() {
 
         if (useBackend) {
             try {
-                const res = await axios.post(`/api/stop-interview/${sessionId}`);
+                const API = "https://muthaiah26-hire-agent.hf.space";
+                const res = await axios.post(`${API}/api/stop-interview/${sessionId}`);
                 if (res.data.report) {
                     sessionStorage.setItem('interviewReport', JSON.stringify(res.data.report));
                 }
